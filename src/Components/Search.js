@@ -1,80 +1,88 @@
-import React, { useState, useEffect } from 'react'
-import { Weather } from './Weather';
+import React, { useState, useEffect, useContext } from 'react';
+import { AppContext } from '../App';
+import { SearchIcon } from '../Media/SearchIcon';
 
 export const Search = () => {
     const [search, setSearch] = useState('');
+    // const [temps, setTemps] = useState('');
     const [results, setResults] = useState([]);
-    const [weather, setWeather] = useState();
+    const [visible, setVisible] = useState(false);
+    const { setWeather } = useContext(AppContext);
     const openWeather = process.env.REACT_APP_OPEN_WEATHER;
-    
-    function handleChange(event) {
-        setSearch(event.target.value);
-    }
-    
+    const geoapify = process.env.REACT_APP_GEOAPIFY;
     useEffect(() => {
-        const geoapify = process.env.REACT_APP_GEOAPIFY;
         if (search.length >= 3) {
-            setResults([]);
             let url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${search}&format=json&apiKey=${geoapify}`;
             fetch(url)
-                .then(response => response.json())
-                .then(result => {
-                    setResults(() => result.results.map(temp => {
-                        let arr = {
-                            formatted: temp.formatted,
-                            lat: temp.lat, lon: temp.lon,
-                            id: temp.place_id
-                        };
-                        return arr;
-                    }));
-                })
-                .catch(error => console.log('error', error));
+            .then(response => response.json())
+            .then(result => {
+                setResults(() => result.results.map(temp => {
+                    let arr = {
+                        full_result: temp,
+                        address1: temp.address_line1,
+                        address2: temp.address_line2,
+                        lat: temp.lat, lon: temp.lon,
+                        id: temp.place_id
+                    };
+                    return arr;
+                }));
+            })
+            .catch(error => console.log('error', error));
         }
-    }, [search]);
-    function handle(item) {
+    }, [search, geoapify]);
+
+    function suggestions() {
+        return results.map((item) => {
+            return <div key={item.id}
+                className='search-results'
+                onClick={() => handleClick(item)}
+                // onMouseOver={() => {
+                //     setTemps(search);
+                //     setSearch(item.address1+' '+item.address2);
+                // }}
+                // onMouseLeave={setSearch(temps)}
+            >
+                <div className='search-results-sub'>
+                <span className='add1'>{item.address1+', '}</span>
+                <span className='add2'>{item.address2}</span>
+                </div>
+            </div>
+        });
+    }
+
+    function handleClick(item) {
         let llurl = `https://api.openweathermap.org/data/2.5/weather?lat=${item.lat}&lon=${item.lon}&appid=${openWeather}`;
         fetch(llurl)
             .then(response => response.json())
             .then(result => {
-                setWeather(result);
+                setWeather({ address1: item.address1,
+                    address2: item.address2,
+                    finalWeather: result });
             })
             .catch(error => console.log('error', error));
+        setVisible(false);
+        setSearch(item.address1+' '+item.address2);
     }
-    function func() {
-        return results.map((item) => {
-            return <div key={item.id} className='SearchResults' onClick={() => handle(item)}>{item.formatted}</div>
-        })
-    }
-    function handleClick(result) {
-        if (search) {
-            let llurl = `https://api.openweathermap.org/data/2.5/weather?lat=${result.lat}&lon=${result.lon}&appid=${openWeather}`;
-            fetch(llurl)
-                .then(response => response.json())
-                .then(result => {
-                    console.log(result);
-                })
-                .catch(error => console.log('error', error));
-        }
-    }
-    return <div>
-        <div className='top'>
-            <form>
-                <label>
-                    <input className='Search'
-                        id='Search'
-                        type='text'
-                        placeholder='Enter a location to get its weather'
-                        value={search}
-                        onChange={handleChange}
-                    />
-                    {func()}
-                    <button className='Submit' type='button' onClick={() => handleClick(results)}>Submit</button>
-                </label>
-            </form>
+    return <div className='search'>
+        <div className='search-bar'>
+            <input className='search-box'
+                id='Search'
+                type='text'
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                autoComplete='off'
+                onFocus={() => setVisible(true)}
+                onKeyDown={(event) => {
+                    if (event.key === 'Enter')
+                        handleClick(results[0]);
+                }}
+            />
+            <div onClick={() => handleClick(results[0])}>
+                <SearchIcon />
+            </div>
         </div>
-        <div className='weather'>
-            {weather?weather.main.temp:'Nothing'}
-            <Weather weather={weather} />
+        <div className='collected-results'>
+            {visible && search.length > 2 && suggestions()}
         </div>
     </div>
 }
