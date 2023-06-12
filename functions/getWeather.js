@@ -1,15 +1,23 @@
-exports.handler= async function(event, context){
-    const geoapify = process.env.REACT_APP_GEOAPIFY;
-    let url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${search}&format=json&apiKey=${geoapify}`;
-    let tempresult=null;
-    fetch(url)
-    .then(response => response.json())
-    .then(result => {
-            tempresult=result;
-    })
-    .catch(error => console.log('error', error));
+const fetch = require("node-fetch");
+
+exports.handler = async (event, context) => {
+  const { REACT_APP_OPEN_WEATHER } = process.env;
+  const params = JSON.parse(event.body);
+  if(params===null)
+  {
+    [params]=[{lat: 28.6273928,
+      lon: 77.1716954}];
+  }
+  const { lat, lon } = params;
+  const url=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${REACT_APP_OPEN_WEATHER}`;
+  try {
+    const weatherStream = await fetch(url);
+    const weatherJson = await weatherStream.json();
     return {
-        statuscode: 200,
-        body: tempresult
+      statusCode: 200,
+      body: JSON.stringify(weatherJson)
     };
-}
+  } catch (err) {
+    return { statusCode: 422, body: err.stack };
+  }
+};

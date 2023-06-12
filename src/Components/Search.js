@@ -8,12 +8,13 @@ export const Search = () => {
     const [results, setResults] = useState([]);
     const [visible, setVisible] = useState(false);
     const { setWeather } = useContext(AppContext);
-    const openWeather = process.env.REACT_APP_OPEN_WEATHER;
-    const geoapify = process.env.REACT_APP_GEOAPIFY;
     useEffect(() => {
         if (search.length >= 3) {
-            let url = `https://api.geoapify.com/v1/geocode/autocomplete?text=${search}&format=json&apiKey=${geoapify}`;
-            fetch(url)
+            const url = '/.netlify/functions/getSuggestions';
+            fetch(url, {
+                method: "POST",
+                body: JSON.stringify({search: search})
+            })
             .then(response => response.json())
             .then(result => {
                 setResults(() => result.results.map(temp => {
@@ -29,7 +30,7 @@ export const Search = () => {
             })
             .catch(error => console.log('error', error));
         }
-    }, [search, geoapify]);
+    }, [search]);
 
     function suggestions() {
         return results.map((item) => {
@@ -51,8 +52,11 @@ export const Search = () => {
     }
 
     function handleClick(item) {
-        let llurl = `https://api.openweathermap.org/data/2.5/weather?lat=${item.lat}&lon=${item.lon}&appid=${openWeather}`;
-        fetch(llurl)
+        let llurl = '/.netlify/functions/getWeather';
+        fetch(llurl,{
+            method: "POST",
+            body: JSON.stringify({lat: item.lat,lon: item.lon})
+        })
             .then(response => response.json())
             .then(result => {
                 setWeather({ address1: item.address1,
