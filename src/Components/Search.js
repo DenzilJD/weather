@@ -52,7 +52,7 @@ export const Search = () => {
     }
 
     function handleClick(item) {
-        let llurl = '/.netlify/functions/getWeather';
+        const llurl = '/.netlify/functions/getWeather';
         fetch(llurl,{
             method: "POST",
             body: JSON.stringify({lat: item.lat,lon: item.lon})
@@ -72,6 +72,7 @@ export const Search = () => {
             <input className='search-box'
                 id='Search'
                 type='text'
+                placeholder='Enter location'
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
                 autoComplete='off'
