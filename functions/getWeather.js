@@ -5,12 +5,16 @@ exports.handler = async (event, context) => {
   const params = JSON.parse(event.body);
   const { lat, lon } = params;
   const url=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${REACT_APP_OPEN_WEATHER}`;
+  const furl=`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${REACT_APP_OPEN_WEATHER}`;
   try {
     const weatherStream = await fetch(url);
     const weatherJson = await weatherStream.json();
+    const forecastStream= await fetch(furl);
+    const forecastJson=await forecastStream.json();
+    const temp={...weatherJson,...forecastJson};
     return {
       statusCode: 200,
-      body: JSON.stringify(weatherJson)
+      body: JSON.stringify(temp)
     };
   } catch (err) {
     return { statusCode: 422, body: err.stack };

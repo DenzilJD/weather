@@ -8,7 +8,7 @@
 :root {
   height: 100%;
   width: 100%;
-  --light: rgba(255, 255, 255, 0.5);
+  --light: rgba(255, 255, 255, 0.8);
 }
 
 code {
@@ -59,7 +59,7 @@ body {
   align-items: center;
   border-radius: 1000px;
   width: 90%;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.8);
   margin-top: 10vh;
 }
 
@@ -94,7 +94,7 @@ body {
 }
 
 .collected-results {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255);
   border-radius: 25px;
   margin-top: 5px;
   top: 100%;
@@ -155,18 +155,34 @@ body {
 
 .weather {
   display: flex;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 1rem;
   color: rgb(0, 0, 0);
   margin-top: 4%;
-  width: 100%;
+  width: 90vw;
   height: 15rem;
   padding: 2%;
   margin: 2%;
+  justify-content: space-evenly;
 }
 
-.temp {
-  font-size: 6rem;
+.weather-icon{
+  border: 2px solid red;
+}
+
+.temp{
+  font-size: 5rem;
+}
+
+.icon{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  border: 2px solid blue;
+}
+
+.forecast{
 }
 
 @media screen and ((min-aspect-ratio: 1/1) or (min-width: 700px)) {

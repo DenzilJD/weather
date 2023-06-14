@@ -1,7 +1,7 @@
 import { BrowserRouter } from 'react-router-dom';
 import { createContext, useEffect, useState } from 'react';
 import { Search } from './Components/Search';
-import { SecWeather, Weather } from './Components/Weather';
+import { Forecast, SecWeather, Weather } from './Components/Weather';
 import { Toggle } from './Components/Toggle';
 
 export const AppContext = createContext(null);
@@ -16,6 +16,7 @@ useEffect(()=>{
 })
     .then(response => response.json())
     .then(result => {
+      console.log(result);
         setWeather({ address1: 'New Delhi',
             address2: 'DL, India',
             finalWeather: result });
@@ -33,6 +34,7 @@ useEffect(()=>{
           <div className='weather-collection'>
             {weather ? <Weather weather={weather} /> : ''}
             {weather ? <SecWeather weather={weather} /> : ''}
+            {/* {weather? <Forecast weather={weather} />:''} */}
           </div>
         </BrowserRouter>
       </div>

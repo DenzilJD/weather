@@ -2,7 +2,7 @@ import { WeatherIcon } from "../Media/WeatherIcons";
 
 export const Weather = (props) => {
     const weather = props.weather;
-    let dorn;
+    let dorn='day';
     if (weather.finalWeather.sys.sunrise <= Date.now() && weather.finalWeather.sys.sunset >= Date.now()) {
         dorn = 'night';
     }
@@ -22,10 +22,18 @@ export const Weather = (props) => {
 
 export const SecWeather = (props) => {
     const weather = props.weather;
-    console.log(weather);
-    return <div className='sec-weather weather'>
+    return <div className='weather'>
         <h3>{`Humidity: ${weather.finalWeather.main.humidity}%`}</h3>
-        <h3>{`Pressure: ${weather.finalWeather.main.pressure}`}hPa</h3>
+        <h3>{`Pressure: ${weather.finalWeather.main.pressure}hPa`}</h3>
         <h3>{`Wind Speed: ${weather.finalWeather.wind.speed}`}</h3>
+    </div>
+}
+
+export const Forecast=(props)=>{
+    const weather=props.weather;
+    return <div className='forecast'>
+        {weather.finalWeather.list.map(item=>{
+            return <div key={item.id}>{item.dt}</div>
+        })}
     </div>
 }
