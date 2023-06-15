@@ -33,7 +33,6 @@ useEffect(()=>{
           </div>
           <div className='weather-collection'>
             {weather ? <Weather weather={weather} /> : ''}
-            {weather ? <SecWeather weather={weather} /> : ''}
             {/* {weather? <Forecast weather={weather} />:''} */}
           </div>
         </BrowserRouter>

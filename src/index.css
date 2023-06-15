@@ -8,7 +8,7 @@
 :root {
   height: 100%;
   width: 100%;
-  --light: rgba(255, 255, 255, 0.8);
+  --light: #5ED4FF;
 }
 
 code {
@@ -21,7 +21,8 @@ code {
 html {
   height: 100%;
   width: 100%;
-  background-image: url(./Media/uranus-sky-night-background-asset-game-2d-futuristic-generative-ai.jpg);
+  /* background-image: url(./Media/uranus-sky-night-background-asset-game-2d-futuristic-generative-ai.jpg); */
+  background-color: #43C9FA;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -59,7 +60,7 @@ body {
   align-items: center;
   border-radius: 1000px;
   width: 90%;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: #5ED4FF;
   margin-top: 10vh;
 }
 
@@ -67,7 +68,7 @@ body {
   border-bottom-left-radius: 1000px;
   border-top-left-radius: 1000px;
   margin-right: auto;
-  color: rgb(0, 0, 0);
+  color: rgb(245, 245, 245);
   font-size: 2rem;
   text-indent: 5%;
   border: none;
@@ -78,7 +79,7 @@ body {
 }
 
 ::placeholder {
-  color: rgb(0, 0, 0);
+  color: whitesmoke;
 }
 
 .search-icon {
@@ -94,7 +95,7 @@ body {
 }
 
 .collected-results {
-  background-color: rgba(255, 255, 255);
+  background-color: #5ED4FF;
   border-radius: 25px;
   margin-top: 5px;
   top: 100%;
@@ -103,7 +104,7 @@ body {
 }
 
 .search-results {
-  color: rgb(0, 0, 0);
+  color: whitesmoke;
   align-items: center;
   display: flex;
   height: 2rem;
@@ -127,7 +128,7 @@ body {
 
 .search-results:hover {
   background-color: rgb(11, 206, 203);
-  color: white;
+  color: black;
   cursor: pointer;
 }
 
@@ -149,40 +150,57 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
   padding: 2%;
 }
 
 .weather {
   display: flex;
-  background-color: rgba(255, 255, 255, 0.8);
+  flex-direction: column;
+  background-color: #5ED4FF;
   border-radius: 1rem;
-  color: rgb(0, 0, 0);
+  color: whitesmoke;
   margin-top: 4%;
-  width: 90vw;
-  height: 15rem;
+  height: max-content;
+  max-width: 800px;
   padding: 2%;
   margin: 2%;
-  justify-content: space-evenly;
 }
 
-.weather-icon{
-  border: 2px solid red;
+.add {
+  flex: 1;
 }
 
-.temp{
-  font-size: 5rem;
+.weather-and-icon {
+  display: flex;
 }
 
-.icon{
+.icon {
+  margin-right: auto;
+  width: max-content;
+  flex: 1;
+}
+
+.temp {
+  font-size: 6rem;
+}
+
+.icon {
   display: flex;
   justify-content: center;
   align-items: center;
   width: max-content;
-  border: 2px solid blue;
 }
 
-.forecast{
+.forecast {
+  display: flex;
+  flex-direction: column;
+  background-color: #5ED4FF;
+  border-radius: 1rem;
+  color: whitesmoke;
+  margin-top: 4%;
+  max-width: max-content;
+  padding: 2%;
+  margin: 2%;
 }
 
 @media screen and ((min-aspect-ratio: 1/1) or (min-width: 700px)) {
@@ -196,5 +214,7 @@ body {
 
   .weather-collection {
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
