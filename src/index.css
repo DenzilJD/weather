@@ -161,6 +161,7 @@ body {
   color: whitesmoke;
   margin-top: 4%;
   height: max-content;
+  flex: 1 1 0px;
   max-width: 800px;
   padding: 2%;
   margin: 2%;
@@ -215,6 +216,8 @@ body {
   .weather-collection {
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+  }
+  .weather{
+    max-width: 800px;
   }
 }
