@@ -197,7 +197,15 @@ body {
 
 .sub-forecast-even {
   background-color: aliceblue;
-  color: #43C9FA;
+  color:#5ED4FF;
+}
+
+.sub-forecast-odd{
+  background-color:#43C9FA;
+}
+
+.sub-forecast-even, .sub-forecast-odd{
+  padding: 0.5%;
   border-radius: 10px;
   max-width: fit-content;
 }
