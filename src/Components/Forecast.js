@@ -15,13 +15,13 @@ export const Forecast = (props) => {
             else
                 subfore = 'sub-forecast-odd';
             let dorn = 'day';
-            if (weather.finalWeather.sys.sunrise <= Date.now() && weather.finalWeather.sys.sunset >= Date.now())
+            if (weather.finalWeather.sys.sunrise <= item.dt && weather.finalWeather.sys.sunset >= item.dt)
                 dorn = 'night';
             else
                 dorn = 'day';
             return <div className={subfore} key={item.dt}>
                 {hours.substring(hours.length - 2) + ':' + minutes.substring(minutes.length - 2)}
-                {/* <WeatherIcon dorn={dorn} weather={item.main} /> */}
+                <WeatherIcon dorn={dorn} weather={item.weather[0].main} />
                 <h3 className='fore'>{`${Math.round(item.main.temp - 273.15)}°C`}</h3>
             </div>
         }).slice(0, 8);

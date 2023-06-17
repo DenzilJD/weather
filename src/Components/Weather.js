@@ -21,7 +21,7 @@ export const Weather = (props) => {
         <div className='sec-weather'>
             <p><span className='w-features'>Humidity:</span> {weather.finalWeather.main.humidity}%</p>
             <p><span className='w-features'>Pressure:</span> {weather.finalWeather.main.pressure}hPa</p>
-            <p><span className='w-features'>Wind Speed:</span> {weather.finalWeather.wind.speed}m/s</p>
         </div>
+        <p><span className='w-features'>Wind Speed:</span> {weather.finalWeather.wind.speed}m/s</p>
     </div>
 }

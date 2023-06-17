@@ -39,8 +39,8 @@ function App() {
           <div className='weather-collection'>
             {weather ? <Weather weather={weather} /> : ''}
             {weather ? <Air weather={weather} /> : ''}
-            {weather ? <Forecast weather={weather} /> : ''}
           </div>
+          {weather ? <Forecast weather={weather} /> : ''}
         </BrowserRouter>
       </div>
     </AppContext.Provider>
