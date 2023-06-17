@@ -21,7 +21,6 @@ code {
 html {
   height: 100%;
   width: 100%;
-  /* background-image: url(./Media/uranus-sky-night-background-asset-game-2d-futuristic-generative-ai.jpg); */
   background-color: #43C9FA;
   background-repeat: no-repeat;
   background-size: cover;
@@ -79,10 +78,14 @@ body {
 }
 
 ::placeholder {
-  color: whitesmoke;
+  color: rgba(245, 245, 245, 0.5);
 }
 
-.search-icon {
+.search-icon{
+  border-radius: 1000px;
+}
+
+.search-svg {
   width: 2.5rem;
   height: 2.5rem;
   min-width: 2rem;
@@ -90,12 +93,13 @@ body {
   border-radius: 1000px;
 }
 
-.search-icon:hover {
+.search-svg:hover, .search-icon:hover {
   cursor: pointer;
+  background-color: red;
 }
 
 .collected-results {
-  background-color: #5ED4FF;
+  background-color: white;
   border-radius: 25px;
   margin-top: 5px;
   top: 100%;
@@ -104,7 +108,7 @@ body {
 }
 
 .search-results {
-  color: whitesmoke;
+  color: rgb(0, 0, 0);
   align-items: center;
   display: flex;
   height: 2rem;
@@ -127,8 +131,8 @@ body {
 }
 
 .search-results:hover {
-  background-color: rgb(11, 206, 203);
-  color: black;
+  background-color: whitesmoke;
+  color: #5ED4FF;
   cursor: pointer;
 }
 
@@ -146,25 +150,41 @@ body {
   cursor: pointer;
 }
 
-.weather-collection {
+.weather-collection, .sub-forecast {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2%;
+  justify-content: center;
+  padding-top: 2%;
+  flex: 1 1 0px;
+  flex-wrap: wrap;
+  align-items: stretch;
 }
 
-.weather {
+.weather, .air, .forecast {
   display: flex;
   flex-direction: column;
   background-color: #5ED4FF;
   border-radius: 1rem;
   color: whitesmoke;
-  margin-top: 4%;
+  margin-top: 2%;
   height: max-content;
-  flex: 1 1 0px;
+  min-width: 300px;
   max-width: 800px;
   padding: 2%;
-  margin: 2%;
+  margin: 1%;
+}
+
+.air{
+  height: auto;
+}
+
+.forecast {
+  height: auto;
+}
+
+.sub-forecast-even{
+  background-color: aliceblue;
+  color: #43C9FA;
+  border-radius: 1000px;
 }
 
 .add {
@@ -187,37 +207,27 @@ body {
 
 .icon {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   width: max-content;
 }
 
-.forecast {
-  display: flex;
-  flex-direction: column;
-  background-color: #5ED4FF;
-  border-radius: 1rem;
-  color: whitesmoke;
-  margin-top: 4%;
-  max-width: max-content;
-  padding: 2%;
-  margin: 2%;
+.airq, .fore{
+  font-size: 2rem;
+  margin-bottom: 2px;
 }
 
-@media screen and ((min-aspect-ratio: 1/1) or (min-width: 700px)) {
+.w-features{
+  font-weight:100;
+  color: rgb(63, 49, 49);
+}
+
+@media screen and (min-width: 500px) {
   .search-bar {
     width: 50%;
   }
 
   .collected-results {
     width: 50%;
-  }
-
-  .weather-collection {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-  .weather{
-    max-width: 800px;
   }
 }

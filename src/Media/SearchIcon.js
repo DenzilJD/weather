@@ -1,5 +1,6 @@
 export const SearchIcon = () => {
-    return <svg className='search-icon' 
+    return <div className='search-icon'>
+    <svg className='search-svg'
         width="800px"
         height="800px"
         viewBox="0 0 24 24"
@@ -14,4 +15,5 @@ export const SearchIcon = () => {
                 strokeLinejoin="round" />
         </g>
     </svg>
+    </div>
 }
