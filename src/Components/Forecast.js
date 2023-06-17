@@ -6,9 +6,7 @@ export const Forecast = (props) => {
     function forec() {
         console.log(weather.finalWeather.list);
         return weather.finalWeather.list.map((item, index) => {
-            let date = new Date(item.dt * 1000);
-            let hours = '0' + date.getHours();
-            let minutes = '0' + date.getMinutes();
+            let date = new Date(item.dt * 1000).toUTCString();
             let subfore;
             if (index % 2 === 0)
                 subfore = 'sub-forecast-even';
@@ -20,7 +18,7 @@ export const Forecast = (props) => {
             else
                 dorn = 'day';
             return <div className={subfore} key={item.dt}>
-                {hours.substring(hours.length - 2) + ':' + minutes.substring(minutes.length - 2)}
+                {date[date.length-]}
                 <WeatherIcon dorn={dorn} weather={item.weather[0].main} />
                 <h3 className='fore'>{`${Math.round(item.main.temp - 273.15)}°C`}</h3>
             </div>

@@ -81,7 +81,7 @@ body {
   color: rgba(245, 245, 245, 0.5);
 }
 
-.search-icon{
+.search-icon {
   border-radius: 1000px;
 }
 
@@ -93,7 +93,8 @@ body {
   border-radius: 1000px;
 }
 
-.search-svg:hover, .search-icon:hover {
+.search-svg:hover,
+.search-icon:hover {
   cursor: pointer;
   background-color: red;
 }
@@ -150,7 +151,8 @@ body {
   cursor: pointer;
 }
 
-.weather-collection, .sub-forecast {
+.weather-collection,
+.sub-forecast {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -158,11 +160,9 @@ body {
   flex: 1 1 0px;
   flex-wrap: wrap;
   align-items: stretch;
-  padding-left: 10vw;
-  padding-right: 10vw;
 }
 
-.sub-forecast{
+.sub-forecast {
   min-width: 90vw;
   align-items: center;
   justify-content: center;
@@ -170,29 +170,32 @@ body {
   padding: 0;
 }
 
-.weather, .air, .forecast {
+.weather,
+.air,
+.forecast {
   display: flex;
   flex-direction: column;
   background-color: #5ED4FF;
   border-radius: 1rem;
   color: whitesmoke;
   margin-top: 2%;
-  height: max-content;
+  height: auto;
   min-width: 300px;
+  max-width: max-content;
   padding: 2%;
   margin: 1%;
+  align-items: stretch;
 }
 
-.air{
+.air {
   height: auto;
 }
 
 .forecast {
   height: auto;
-  padding: 0;
 }
 
-.sub-forecast-even{
+.sub-forecast-even {
   background-color: aliceblue;
   color: #43C9FA;
   border-radius: 10px;
@@ -205,6 +208,7 @@ body {
 
 .weather-and-icon {
   display: flex;
+  align-items: center;
 }
 
 .icon {
@@ -215,6 +219,9 @@ body {
 
 .temp {
   font-size: 6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .icon {
@@ -224,14 +231,45 @@ body {
   width: max-content;
 }
 
-.airq, .fore{
+.airq,
+.fore {
   font-size: 2rem;
   margin-bottom: 2px;
 }
 
-.w-features{
-  font-weight:100;
+.w-features {
+  font-weight: 100;
   color: rgb(63, 49, 49);
+}
+
+.red {
+  color: red;
+  font-weight: 900;
+  font-size: 3rem;
+}
+
+.orange {
+  color: orange;
+  font-weight: 900;
+  font-size: 3rem;
+}
+
+.yellow {
+  color: rgb(255, 255, 100);
+  font-weight: 900;
+  font-size: 3rem;
+}
+
+.light-green {
+  color: lightgreen;
+  font-weight: 900;
+  font-size: 3rem;
+}
+
+.dark-green {
+  color: darkgreen;
+  font-weight: 900;
+  font-size: 3rem;
 }
 
 @media screen and (min-width: 500px) {
